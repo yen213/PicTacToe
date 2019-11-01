@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_page_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_list">
+
+    <Button
+        android:id="@+id/single_player_hard_button"
+        style="@style/main_page_buttons"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/main_page_button_drawable"
+        android:text="@string/hard_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/single_player_easy_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/single_player_easy_button"
+        app:layout_constraintTop_toBottomOf="@+id/single_player_easy_button"
+        app:layout_constraintVertical_bias="0.060000002" />
+
+    <Button
+        android:id="@+id/single_player_easy_button"
+        style="@style/main_page_buttons"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/main_page_button_drawable"
+        android:text="@string/easy_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.377" />
+
+    <Button
+        android:id="@+id/multiplayer_player_button"
+        style="@style/main_page_buttons"
+        android:layout_below="@+id/single_player_easy_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/main_page_button_drawable"
+        android:text="@string/multi_player_button"
+        app:layout_constraintEnd_toEndOf="@+id/single_player_easy_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/single_player_easy_button"
+        app:layout_constraintTop_toBottomOf="@+id/single_player_hard_button" />
+
+    <TextView
+        android:id="@+id/game_title"
+        style="@style/main_page_title"
+        android:text="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/single_player_easy_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.766" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

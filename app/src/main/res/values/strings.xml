@@ -1,0 +1,33 @@
+<resources>
+    <!-- Application name -->
+    <string name="app_name">Pic Tac Toe</string>
+
+    <!-- Single player Easy button name -->
+    <string name="easy_button">Single Player:\nEasy</string>
+
+    <!-- Single player Hard button name -->
+    <string name="hard_button">Single Player:\nHard</string>
+
+    <!-- Multi-player button name -->
+    <string name="multi_player_button">Multi Player</string>
+
+    <!-- Default score for the two players' TextViews -->
+    <string name="score">0</string>
+
+    <!-- Description for X and O ImageButtons -->
+    <string name="x_and_o">X and O ImageButtons</string>
+
+    <!-- Title of dialog box in the main page -->
+    <string name="dialog_title">Welcome to Pic Tac Toe!</string>
+
+    <!-- Dialog box message for the main page -->
+    <string name="dialog_message">Player(s) must take a picture of whatever they wish when camera
+        shows up after clicking a game mode option. Otherwise, game will not start.
+    </string>
+
+    <!-- OK text for dialog positive button -->
+    <string name="ok">OK</string>
+
+    <!-- Button to reset all points to 0 -->
+    <string name="reset_points">Reset Points</string>
+</resources>
