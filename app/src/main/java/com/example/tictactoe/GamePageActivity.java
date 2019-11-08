@@ -186,7 +186,6 @@ public class GamePageActivity extends AppCompatActivity {
             }
         }
 
-        // Check for winning conditions after the least required turns needed for a player to win
         if (gameViewModel.getNumOfTurns() > 4)
             checkGameState();
     }
@@ -275,26 +274,33 @@ public class GamePageActivity extends AppCompatActivity {
     public void onConfigChange() {
         int tag;
         char[][] board = gameViewModel.getBoard();
+        int totalRows = gameViewModel.getRow();
+        int totalCols = gameViewModel.getCol();
+        char playerX = gameViewModel.getPlayerX();
+        char playerO = gameViewModel.getPlayerO();
+        Bitmap player1Img = gameViewModel.getPlayer1BitmapImage();
+        Bitmap player2Img = gameViewModel.getPlayer2BitmapImage();
+        boolean singlePlayer = gameViewModel.getSinglePlayerOption();
 
-        for (int row = 0; row < gameViewModel.getRow(); row++) {
-            for (int col = 0; col < gameViewModel.getCol(); col++) {
-                tag = (row * gameViewModel.getCol()) + (col + 1);
+        for (int row = 0; row < totalRows; row++) {
+            for (int col = 0; col < totalCols; col++) {
+                tag = (row * totalCols) + (col + 1);
 
-                if (board[row][col] == gameViewModel.getPlayerX()) {
+                if (board[row][col] == playerX) {
                     for (ImageButton imageButton : imageButtons) {
                         if (Integer.parseInt(imageButton.getTag().toString()) == tag) {
-                            imageButton.setImageBitmap(gameViewModel.getPlayer1BitmapImage());
+                            imageButton.setImageBitmap(player1Img);
                             break;
                         }
                     }
-                } else if (board[row][col] == gameViewModel.getPlayerO()) {
+                } else if (board[row][col] == playerO) {
                     for (ImageButton imageButton : imageButtons) {
                         if (Integer.parseInt(imageButton.getTag().toString()) == tag) {
-                            if (gameViewModel.getSinglePlayerOption()) {
+                            if (singlePlayer) {
                                 imageButton.setImageResource(R.drawable.computer);
                                 break;
                             } else {
-                                imageButton.setImageBitmap(gameViewModel.getPlayer2BitmapImage());
+                                imageButton.setImageBitmap(player2Img);
                                 break;
                             }
                         }
