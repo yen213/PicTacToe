@@ -83,7 +83,9 @@ public class GamePageActivity extends AppCompatActivity {
             }
         }
 
-        onConfigChange();
+        // Only populate board if there is at least 1 move on the board during a configuration change
+        if (gameViewModel.getNumOfTurns() > 0)
+            onConfigChange();
 
         // Attach observers to livedata and update player points whenever they change
         gameViewModel.getPlayer1Points().observe(this, new Observer<Integer>() {
@@ -269,7 +271,8 @@ public class GamePageActivity extends AppCompatActivity {
     /**
      * Whenever a configuration change occurs and function is called from onCreate(), the board
      * gets repopulated with the images that have been placed on the ImageButton views before the
-     * configuration change. Makes it so that it doesn't seem like the board moves reset to the user(s).
+     * configuration change. Makes it so that it doesn't seem like the board moves reset to the
+     * user(s). Function is called ONLY when there is a configuration change.
      */
     public void onConfigChange() {
         int tag;

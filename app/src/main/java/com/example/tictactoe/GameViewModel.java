@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
  */
 public class GameViewModel extends ViewModel {
     // Constants
+    private static final int noOneWins = -1;
     private static final int ROW = 3;
     private static final int COL = 3;
     private static final char PLAYER_X = 'X';
@@ -42,55 +43,101 @@ public class GameViewModel extends ViewModel {
 
     /**
      * Looks at the current state of the game board (mBoard) for a winning condition in any of the
-     * rows, columns, or diagonals
+     * rows, columns, or diagonals. Algorithm checks square board of size N by N.
      *
      * @return 10 if PLAYER_X wins, -10 if PLAYER_O wins, 0 otherwise
      */
     public int checkForWinner() {
+        int playerXCount = 0;
+        int playerOCount = 0;
+
         // Check negative sloped diagonal
-        if (mBoard[0][0] == mBoard[1][1] &&
-                mBoard[0][0] == mBoard[2][2] &&
-                !(mBoard[0][0] == ' ')) {
-            if (mBoard[0][0] == PLAYER_X)
-                return 10;
-            else if (mBoard[0][0] == PLAYER_O)
-                return -10;
+        for (int i = 0; i < COL; i++) {
+            if (!(mBoard[i][i] == ' ')) {
+                if (mBoard[i][i] == PLAYER_X)
+                    playerXCount++;
+                else
+                    playerOCount++;
+            }
         }
 
+        if (returnWinnerScore(playerXCount, playerOCount) != noOneWins)
+            return returnWinnerScore(playerXCount, playerOCount);
+
+        playerOCount = 0;
+        playerXCount = 0;
+
         // Check positive sloped diagonal
-        if (mBoard[0][2] == mBoard[1][1] &&
-                mBoard[0][2] == mBoard[2][0] &&
-                !(mBoard[0][2] == ' ')) {
-            if (mBoard[0][2] == PLAYER_X)
-                return 10;
-            else if (mBoard[0][2] == PLAYER_O)
-                return -10;
+        for (int i = 0; i < COL; i++) {
+            if (!(mBoard[i][COL - (i + 1)] == ' ')) {
+                if (mBoard[i][COL - (i + 1)] == PLAYER_X)
+                    playerXCount++;
+                else
+                    playerOCount++;
+            }
         }
+
+        if (returnWinnerScore(playerXCount, playerOCount) != noOneWins)
+            return returnWinnerScore(playerXCount, playerOCount);
+
+        playerOCount = 0;
+        playerXCount = 0;
 
         // Check every row
         for (int row = 0; row < ROW; row++) {
-            if (mBoard[row][0] == mBoard[row][1] &&
-                    mBoard[row][0] == mBoard[row][2] &&
-                    !(mBoard[row][0] == ' ')) {
-                if (mBoard[row][0] == PLAYER_X)
-                    return 10;
-                else if (mBoard[row][0] == PLAYER_O)
-                    return -10;
+            for (int col = 0; col < COL; col++) {
+                if (!(mBoard[row][col] == ' ')) {
+                    if (mBoard[row][col] == PLAYER_X)
+                        playerXCount++;
+                    else
+                        playerOCount++;
+                }
             }
+
+            if (returnWinnerScore(playerXCount, playerOCount) != noOneWins)
+                return returnWinnerScore(playerXCount, playerOCount);
+
+            playerOCount = 0;
+            playerXCount = 0;
         }
 
         // Check every column
         for (int col = 0; col < COL; col++) {
-            if (mBoard[0][col] == mBoard[1][col] &&
-                    mBoard[0][col] == mBoard[2][col] &&
-                    !(mBoard[0][col] == ' ')) {
-                if (mBoard[0][col] == PLAYER_X)
-                    return 10;
-                else if (mBoard[0][col] == PLAYER_O)
-                    return -10;
+            for (int row = 0; row < ROW; row++) {
+                if (!(mBoard[row][col] == ' ')) {
+                    if (mBoard[row][col] == PLAYER_X)
+                        playerXCount++;
+                    else
+                        playerOCount++;
+                }
             }
+
+            if (returnWinnerScore(playerXCount, playerOCount) != noOneWins)
+                return returnWinnerScore(playerXCount, playerOCount);
+
+            playerOCount = 0;
+            playerXCount = 0;
         }
         return 0;
+    }
+
+    /**
+     * Checks the number of moves placed in a row, column, or diagonal by a certain player. If
+     * winning move, returns the respective player's score.
+     *
+     * @param plrX  Count of how many moves Player X has placed
+     * @param plrO  Count of how many moves Player O has placed
+     *
+     * @return      10 for X wins, -10 for O wins, member variable noOneWins otherwise
+     */
+    private int returnWinnerScore(int plrX, int plrO)
+    {
+        if (plrX == COL)
+            return 10;
+        else if (plrO == COL)
+            return -10;
+        else
+            return noOneWins;
     }
 
     /**
