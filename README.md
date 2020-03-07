@@ -9,24 +9,9 @@ Game is unbeatable in hard mode, computer always ties or wins the game. This is 
 
 App preserves the game data during configuration changes and supports portrait or landscape mode.
 
-# Screenshots
+## Demo
+<p align="center">
+  <img src="demo/app_showcase.gif" width="220" height="450">
+</p>
 
-**Dialog Screen**
-<div>
-  <img src="screenshots/dialog.jpg" width="180" height="370">
-</div>
-
-**Main Page Screen**
-<div>
-  <img src="screenshots/main_page.jpg" width="180" height="370">
-</div>
-
-**Game Page Screen (Portrait)**
-<div>
-  <img src="screenshots/portrait_game_screen.jpg" width="180" height="370">
-</div>
-
-**Game Page Screen (Landscape)**
-<div>
-  <img src="screenshots/landscape_game_screen.jpg" width="370" height="180">
-</div>
+Screenshots of the app can be found [here](screenshots)
